@@ -1,0 +1,27 @@
+{
+  "name": "node-home-control",
+  "version": "0.0.1",
+  "description": "A program power by nodejs, build up a home control server with Raspberry Pi ",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmberAAA/node-home-control.git"
+  },
+  "keywords": [
+    "Raspberry",
+    "Pi"
+  ],
+  "author": "Amber",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AmberAAA/node-home-control/issues"
+  },
+  "homepage": "https://github.com/AmberAAA/node-home-control#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1"
+  }
+}

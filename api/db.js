@@ -2,8 +2,14 @@
 *  链接数据库
 * */
 
-let MongoClient = require('mongodb').MongoClient
-let DB_CONN_SRT = 'mongodb://localhost/home'
+let mongoose  = require('mongoose')
+
+
+
+
+
+let DB_CONN_SRT = 'mongodb://localhost:27017'
+let emmit = require('../bus')
 
 let start = function () {
     let db = null
@@ -22,9 +28,13 @@ let start = function () {
 
     MongoClient.connect(DB_CONN_SRT,function (err, database) {
         console.log('数据库成功链接')
+        if(err)
+            console.dir(err)
+        emmit.emit('success')
         flag = true
         db = database
     })
 }
 
-module.exports = start
+
+module.exports = new start()

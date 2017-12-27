@@ -2,18 +2,16 @@
 *  链接数据库
 * */
 
-let mongoose  = require('mongoose')
-
-
-
-
-
-let DB_CONN_SRT = 'mongodb://localhost:27017'
+let MongoClient = require('mongodb').MongoClient
+let config = require('../config')
 let emmit = require('../bus')
+let assert = require('assert')
+let DB_CONN_SRT = config.DB_CONN_SRT
+
+console.log(DB_CONN_SRT)
 
 let start = function () {
     let db = null
-    let flag = false
 
     this.insertOne = function (col, data, fn) {
         // Get the documents collection
@@ -26,13 +24,11 @@ let start = function () {
         collection.updateWriteOpResult()
     }
 
-    MongoClient.connect(DB_CONN_SRT,function (err, database) {
-        console.log('数据库成功链接')
-        if(err)
-            console.dir(err)
-        emmit.emit('success')
+    MongoClient.connect(DB_CONN_SRT,function (err, client) {
+        if(err) throw err
         flag = true
-        db = database
+        db = client
+        emmit.emit('success')
     })
 }
 

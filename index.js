@@ -9,11 +9,10 @@ emit.addListener('success', function () {
 })
 
 
-var server = new http.Server()
-
-server.on('request', (req, res) =>{
-    res.writeHead(200,{'Content-Type':'text/html'});
-    res.end('server is running');
-})
-
-server.listen(8080)
+var servers = new http.Server();
+servers.on('request',(req,res)=>{
+    console.log(req.url);
+    //设置应答头信息
+    res.end('running');
+});
+servers.listen(8080);

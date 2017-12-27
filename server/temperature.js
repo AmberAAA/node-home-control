@@ -14,5 +14,5 @@ emmit.addListener('success',function () {
             },(err, rep) => {
             })
         })
-    },1000*60*30)
+    },1000*60*15)
 })

@@ -29,7 +29,7 @@ api.post('/temperature',function (req, res) {
             if(err)
                 res.end('err')
             else
-                res.end('ok')
+                res.end(tem)
         })
     }else{
         res.end('err')

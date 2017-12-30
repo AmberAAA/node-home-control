@@ -34,7 +34,7 @@ let start = function () {
 
     this.findTemperature = function (fn) {
         const collection = db.collection('temperature')
-        collection.find({}).sort({'temperature':-1}).limit(1).toArray(function (err, item) {
+        collection.find({}).sort({'createTime':-1}).limit(1).toArray(function (err, item) {
             assert.equal(err, null)
             fn(item)
         })

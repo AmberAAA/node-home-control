@@ -1,4 +1,3 @@
-let db = require('./api/db.js')
 let emit = require('./bus')
 let express = require('express')
 let api = require('./api/index')

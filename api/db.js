@@ -23,6 +23,30 @@ let start = function () {
         const  collection = db.collection(col)
         collection.updateWriteOpResult()
     }
+    
+    this.findDateOne = function (col, qerry, fn) {
+        const collection = db.collection(col)
+        collection.findOne(qerry).sort().toArray(function (err, item) {
+            assert.equal(err, null)
+            fn(item)
+        })
+    }
+
+    this.findTemperature = function (fn) {
+        const collection = db.collection('temperature')
+        collection.find({}).sort({'temperature':-1}).limit(1).toArray(function (err, item) {
+            assert.equal(err, null)
+            fn(item)
+        })
+    }
+
+    this.insertTemperatur = function (number, fn) {
+        const collection = db.collection('temperature');
+        collection.insertOne({
+            temperature:number,
+            createTime:new Date().valueOf()
+        },fn)
+    }
 
     MongoClient.connect(DB_CONN_SRT,function (err, client) {
         if(err) throw err

@@ -5,7 +5,7 @@ let assert =require('assert')
 
 emmit.addListener('success',function () {
     //每30分钟写一次数据库
-    setInterval(function () {
+/*    setInterval(function () {
         fs.readFile('/sys/bus/w1/devices/28-0517602a5bff/w1_slave', {flag: 'r', encoding: 'utf8'}, function (err, data) {
             assert.equal(err, null)
             db.insertOne('temperature',{
@@ -14,5 +14,5 @@ emmit.addListener('success',function () {
             },(err, rep) => {
             })
         })
-    },1000*60*15)
+    },1000*60*3)*/
 })

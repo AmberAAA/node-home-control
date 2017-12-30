@@ -2,4 +2,3 @@
 *.o
 node_modules
 .idea
-config.js

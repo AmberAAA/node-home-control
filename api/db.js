@@ -40,6 +40,19 @@ let start = function () {
         })
     }
 
+    this.findTemperatures = function (data, fn) {
+        const collection = db.collection('temperature')
+        if(data&&data.from-0===data.from-0&&data.to-0===data.to-0){
+            collection.find({createTime:{$gt:data.from-0,$lt:data.to-0}}).sort({createTime:-1}).toArray(function (err, item) {
+                assert.equal(err, null)
+                fn(item)
+            })
+        }else{
+
+            fn([])
+        }
+    }
+
     this.insertTemperatur = function (number, fn) {
         const collection = db.collection('temperature');
         collection.insertOne({

@@ -17,6 +17,18 @@ api.get('/temperature',function (req, res) {
     })
 })
 
+api.get('/temperatures',function (req, res) {
+    let from = req.query.from
+    let to = req.query.to
+    console.log(from)
+    console.log(to)
+
+    db.findTemperatures({from,to},function (item) {
+        res.send(item)
+        res.end()
+    })
+})
+
 api.post('/temperature',function (req, res) {
     let tem = req.body.temperature
     if(tem && tem-1 === tem-1){

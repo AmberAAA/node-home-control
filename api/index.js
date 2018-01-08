@@ -2,6 +2,7 @@ let express = require('express')
 let db = require('./db')
 let api = express()
 let bodyParser = require('body-parser')
+let bus = require('../bus')
 
 api.use(bodyParser.urlencoded({extended: false}));
 api.use(bodyParser.json());
@@ -10,6 +11,7 @@ api.get('/',function (req, res) {
     res.end('api')
 })
 
+/*设置,获取温度*/
 api.get('/temperature',function (req, res) {
     db.findTemperature(function (item) {
         res.send(item)
@@ -46,6 +48,19 @@ api.post('/temperature',function (req, res) {
     }else{
         res.end('err')
     }
+})
+
+
+
+/*设置、获取开关装填*/
+api.get('/light', function (req, res) {
+    /*获取灯泡开关信息*/
+})
+
+api.post('/light', function (req, res) {
+    console.log(req.body.id)
+    console.log(req.body.flag)
+    bus.emit('set-light', {id:req.body.id,flag:req.body.flag,res:res})
 })
 
 

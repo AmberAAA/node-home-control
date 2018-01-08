@@ -12,6 +12,12 @@ let app = express()
 let server = require('http').Server(app)
 let io = require('socket.io')(server)
 
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
+});
 
 
 app.use('/static', express.static('static'));
@@ -19,6 +25,10 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.get('/', function(req, res) {
     res.render('index');
+})
+
+app.get('/test',function (req, res) {
+    res.render('test')
 })
 
 app.all('*', function(req, res, next) {
@@ -29,13 +39,8 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-app.get('/',function (res, req) {
-    console.log(path.join(__dirname,'./index.html'))
-    req.sendFile(path.join(__dirname,'./index.html'))
-})
-
 app.use('/api', api)
 
 emit.addListener('success',function () {
-    app.listen(8080)
+    app.listen(require('./config').webPart)
 })

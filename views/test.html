@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="../static/socket.io.js"></script>
+<script>
+    let socket = io('http://localhost:8081');
+
+    console.log(socket.id); // undefined
+
+    socket.on('connect', function(){
+        console.log(socket.id); // 'G5p5...'
+        socket.emit('amber', {msg:'Amber'})
+    });
+
+    socket.on('heihei', function (data) {
+        console.log('heihei')
+    });
+
+</script>
+</body>
+</html>

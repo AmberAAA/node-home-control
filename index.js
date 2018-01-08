@@ -3,11 +3,17 @@ let express = require('express')
 let api = require('./api/index')
 let path = require('path')
 
+
 emit.addListener('success', function () {
     console.log('hear success')
 })
 
 let app = express()
+let server = require('http').Server(app)
+let io = require('socket.io')(server)
+
+
+
 app.use('/static', express.static('static'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');

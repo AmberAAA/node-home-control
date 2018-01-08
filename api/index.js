@@ -56,7 +56,7 @@ api.post('/temperature',function (req, res) {
 api.get('/light', function (req, res) {
     /*获取灯泡开关信息*/
     bus.emit('light')
-    res.end()
+    res.end('success')
 })
 
 api.post('/light', function (req, res) {

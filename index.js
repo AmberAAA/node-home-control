@@ -1,6 +1,7 @@
 let emit = require('./bus')
 let express = require('express')
 let api = require('./api/index')
+let io = require('./bus/io')
 let path = require('path')
 
 

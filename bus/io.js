@@ -5,6 +5,7 @@ io.on('connection',function (socket) {
     console.log('on connection')
 
     bus.on('light', function () {
+        console.log('hear light')
         socket.emit('light')
     })
 

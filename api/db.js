@@ -61,7 +61,7 @@ let start = function () {
         },fn)
     }
 
-    MongoClient.connect(DB_CONN_SRT,function (err, client) {
+    MongoClient.connect(DB_CONN_SRT,{auth:{user:config.DB_USER,password:config.DB_PassWard}},function (err, client) {
         if(err) throw err
         flag = true
         db = client

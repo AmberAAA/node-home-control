@@ -1,8 +1,8 @@
 let emit = require('./bus')
 let express = require('express')
 let api = require('./api/index')
-let ios = require('./bus/io')
-let path = require('path')
+let cookie = require('cookie')
+require('./bus/io')
 
 
 emit.addListener('success', function () {
@@ -22,6 +22,7 @@ io.on('connection', function (socket) {
 
 
 app.use('/static', express.static('static'));
+
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.get('/', function(req, res) {
@@ -39,6 +40,22 @@ app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
+
+app.all('*', function (req, res, next) {
+/*    if(req.cookies){
+        let cook = req.cookies
+        if(cook) {
+            //todo 如果认证通过
+        }else{
+            //todo 如果认证不通过
+        }
+    }else{
+        //todo 登陆页面
+    }*/
+
+    req.cookie
+    next()
+})
 
 app.use('/api', api)
 

@@ -10,6 +10,26 @@ api.use(bodyParser.json());
 api.get('/',function (req, res) {
     res.end('api')
 })
+/*登陆*/
+api.post('/login',function (req, res) {
+    let name = ''
+    let pass = ''
+    let data = {}
+    try {
+        name = req.body.name
+        pass = req.body.pass
+        data = {
+            status: 0,
+            msg: 'success'
+        }
+    }catch {
+        data = {
+            status: 1,
+            msg: '参数错误'
+        }
+    }
+})
+
 
 /*设置,获取温度*/
 api.get('/temperature',function (req, res) {
@@ -60,8 +80,6 @@ api.get('/light', function (req, res) {
 })
 
 api.post('/light', function (req, res) {
-    console.log(req.body.id)
-    console.log(req.body.flag)
     bus.emit('set-light', {id:req.body.id,flag:req.body.flag,res:res})
 })
 

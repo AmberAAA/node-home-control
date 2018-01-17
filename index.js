@@ -23,6 +23,7 @@ io.on('connection', function (socket) {
 
 
 app.use('/static', express.static('static'));
+app.use('/', express.static('public'));
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');

@@ -2,6 +2,7 @@ let emit = require('./bus')
 let express = require('express')
 let api = require('./api/index')
 let cookie = require('cookie')
+let config = require('./config')
 require('./bus/io')
 
 
@@ -25,8 +26,14 @@ app.use('/static', express.static('static'));
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
+
 app.get('/', function(req, res) {
-    res.render('index');
+    console.log(req.query)
+    if(req.query.key === config.secretKey){
+        res.render('index');
+    }else{
+        res.end('fuck u !')
+    }
 })
 
 app.get('/test',function (req, res) {
@@ -40,22 +47,6 @@ app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-
-app.all('*', function (req, res, next) {
-/*    if(req.cookies){
-        let cook = req.cookies
-        if(cook) {
-            //todo 如果认证通过
-        }else{
-            //todo 如果认证不通过
-        }
-    }else{
-        //todo 登陆页面
-    }*/
-
-    req.cookie
-    next()
-})
 
 app.use('/api', api)
 

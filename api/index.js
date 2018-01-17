@@ -10,25 +10,6 @@ api.use(bodyParser.json());
 api.get('/',function (req, res) {
     res.end('api')
 })
-/*登陆*/
-api.post('/login',function (req, res) {
-    let name = ''
-    let pass = ''
-    let data = {}
-    try {
-        name = req.body.name
-        pass = req.body.pass
-        data = {
-            status: 0,
-            msg: 'success'
-        }
-    }catch {
-        data = {
-            status: 1,
-            msg: '参数错误'
-        }
-    }
-})
 
 
 /*设置,获取温度*/

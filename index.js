@@ -51,5 +51,5 @@ app.all('*', function(req, res, next) {
 app.use('/api', api)
 
 emit.addListener('success',function () {
-    app.listen(require('./config').webPart)
+    app.listen(80)
 })

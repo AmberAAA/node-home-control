@@ -56,7 +56,7 @@ let start = function () {
     this.insertTemperatur = function (number, fn) {
         const collection = db.collection('temperature');
         collection.insertOne({
-            temperature:number,
+            ...number,
             createTime:new Date().valueOf()
         },fn)
     }

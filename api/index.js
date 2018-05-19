@@ -40,7 +40,7 @@ api.post('/temperature',function (req, res) {
         }else{
             //todo 数据异常
         }
-        db.insertTemperatur(tem,function (err) {
+        db.insertTemperatur(req.body,function (err) {
             if(err)
                 res.end('err')
             else
